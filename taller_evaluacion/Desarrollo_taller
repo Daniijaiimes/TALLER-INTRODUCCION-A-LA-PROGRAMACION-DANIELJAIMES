@@ -1,0 +1,88 @@
+
+"""
+EXAMEN: TEST CAJERO AUTOMATICO
+
+ENTRADA
+- Opcion del menu.
+- Monto que se desea depositar o retirar.
+
+PROCESO
+- Consultar el saldo disponible.
+- Depositar dinero y actualizar el saldo.
+- Retirar dinero validando el saldo disponible.
+- Repetir el menu hasta seleccionar salir.
+
+SALIDA
+- Mostrar el saldo.
+- Mostrar mensajes de exito o error.
+- Mostrar mensaje de despedida.
+"""
+
+# SALDO INICIAL
+saldo = 1000
+
+
+# FUNCION PARA CONSULTAR EL SALDO
+def ConsultarSaldo():
+    print("Su saldo actual es:", saldo)
+
+
+# FUNCION PARA DEPOSITAR DINERO
+def Depositar():
+    global saldo
+
+    monto = float(input("Ingrese el monto a depositar: "))
+
+    if monto > 0:
+        saldo = saldo + monto
+        print("Deposito realizado correctamente.")
+        print("Su nuevo saldo es:", saldo)
+    else:
+        print("Error: el monto debe ser mayor que cero.")
+
+
+# FUNCION PARA RETIRAR DINERO
+def Retirar():
+    global saldo
+
+    monto = float(input("Ingrese el monto a retirar: "))
+
+    if monto <= 0:
+        print("Error: el monto debe ser mayor que cero.")
+    elif monto > saldo:
+        print("Error: no tiene suficiente saldo.")
+    else:
+        saldo = saldo - monto
+        print("Retiro realizado correctamente.")
+        print("Su nuevo saldo es:", saldo)
+
+
+# PROGRAMA PRINCIPAL
+opcion = -1
+
+while opcion != 0:
+
+    print("\n===== CAJERO AUTOMATICO =====")
+    print("1. Consultar saldo")
+    print("2. Depositar dinero")
+    print("3. Retirar dinero")
+    print("0. Salir")
+
+    opcion = int(input("Seleccione una opcion: "))
+
+    if opcion == 1:
+        ConsultarSaldo()
+
+    elif opcion == 2:
+        Depositar()
+
+    elif opcion == 3:
+        Retirar()
+
+    elif opcion == 0:
+        print("Gracias por utilizar el cajero automatico.")
+
+    else:
+        print("Opcion no valida. Intente nuevamente.")
+
+print("Programa finalizado.")
